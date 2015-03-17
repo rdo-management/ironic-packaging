@@ -89,10 +89,14 @@ Requires:	python-lxml
 Requires:	python-migrate
 Requires:	python-mock
 Requires:	python-netaddr
+Requires:	python-oslo-concurrency
 Requires:	python-oslo-config
+Requires:	python-oslo-context
 Requires:	python-oslo-db
 Requires:	python-oslo-i18n
+Requires:	python-oslo-policy
 Requires:	python-oslo-rootwrap
+Requires:	python-oslo-serialization
 Requires:	python-oslo-utils
 Requires:	python-paramiko
 Requires:	python-pecan
