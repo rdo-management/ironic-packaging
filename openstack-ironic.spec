@@ -21,6 +21,7 @@ Source0:	https://launchpad.net/ironic/%{release_name}/%{version}/+download/ironi
 Source1:	openstack-ironic-api.service
 Source2:	openstack-ironic-conductor.service
 Source3:	ironic-rootwrap-sudoers
+Source4:	ironic-dist.conf
 
 Patch0001:	0001-ironic-Remove-runtime-dependency-on-python-pbr.patch
 
@@ -66,6 +67,12 @@ install -p -D -m 640 etc/ironic/ironic.conf.sample %{buildroot}/%{_sysconfdir}/i
 install -p -D -m 640 etc/ironic/policy.json %{buildroot}/%{_sysconfdir}/ironic/policy.json
 install -p -D -m 640 etc/ironic/rootwrap.conf %{buildroot}/%{_sysconfdir}/ironic/rootwrap.conf
 install -p -D -m 640 etc/ironic/rootwrap.d/* %{buildroot}/%{_sysconfdir}/ironic/rootwrap.d/
+
+# Log directory
+install -d -m 750 %{buildroot}/%{_localstatedir}/log/ironic
+
+# Install distribution config
+install -p -D -m 640 %{SOURCE4} %{buildroot}/%{_datadir}/ironic/ironic-dist.conf
 
 
 %description
@@ -133,6 +140,8 @@ Components common to all OpenStack Ironic services
 %{_sysconfdir}/sudoers.d/ironic
 %config(noreplace) %attr(-,root,ironic) %{_sysconfdir}/ironic
 %attr(-,ironic,ironic) %{_sharedstatedir}/ironic
+%attr(-, root, nova) %{_datadir}/ironic/ironic-dist.conf
+%dir %attr(0750, nova, root) %{_localstatedir}/log/ironic
 
 %pre common
 getent group ironic >/dev/null || groupadd -r ironic
