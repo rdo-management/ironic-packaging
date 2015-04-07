@@ -140,8 +140,8 @@ Components common to all OpenStack Ironic services
 %{_sysconfdir}/sudoers.d/ironic
 %config(noreplace) %attr(-,root,ironic) %{_sysconfdir}/ironic
 %attr(-,ironic,ironic) %{_sharedstatedir}/ironic
-%attr(-, root, nova) %{_datadir}/ironic/ironic-dist.conf
-%dir %attr(0750, nova, root) %{_localstatedir}/log/ironic
+%attr(-, root, ironic) %{_datadir}/ironic/ironic-dist.conf
+%dir %attr(0750, ironic, root) %{_localstatedir}/log/ironic
 
 %pre common
 getent group ironic >/dev/null || groupadd -r ironic
